@@ -75,6 +75,7 @@ $p-a1-clr: #0181B7;
 $p-dark-clr: #16131E;
 $a-hover-bg: #1082B1;
 $nav-a-hover: #E0968A;
+$footer-text-clr: #09080A;
 
 /* ----- fonts ----- */
 
@@ -766,6 +767,19 @@ body, html {
 .contact {
   background-color: $footer-bg;
   height: 80px;
+}
+
+footer {
+  text-align: right;
+}
+
+footer p, footer a {
+  font: {
+    size: 14px;
+    weight: 00;
+  }
+  color: $footer-text-clr;
+  margin: 20px 15px 0 0;
 }
 
 /* ----- media ----- */

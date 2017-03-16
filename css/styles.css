@@ -599,6 +599,15 @@ body, html {
   background-color: #211F26;
   height: 80px; }
 
+footer {
+  text-align: right; }
+
+footer p, footer a {
+  font-size: 14px;
+  font-weight: 00;
+  color: #09080A;
+  margin: 20px 15px 0 0; }
+
 /* ----- media ----- */
 @media screen and (max-width: 1200px) {
   .book-now {
