@@ -1,0 +1,917 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
+/* ----- mixins ----- */
+
+@mixin flex ($column, $wrap, $justify-content){
+  display: flex;
+  flex-flow: $column $wrap;
+  justify-content: $justify-content;
+}
+
+@mixin img($url) {
+  background-image: $url;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+@mixin parallax($url) {
+  background-image: $url;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+@mixin transition($duration){
+  -webkit-transition: $duration;
+  transition: $duration;
+}
+
+@mixin gradient {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,190554+100&0+1,0.48+63,1+100 */
+  background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(25,5,84,0.5) 70%, rgba(25,5,84,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(25,5,84,0.5) 70%, rgba(25,5,84,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(25,5,84,0.5) 70%, rgba(25,5,84,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#190554',GradientType=0 ); /* IE6-9 */
+}
+
+/* ----- bg colors ----- */
+
+$nav-bg: #211F26;
+$a1-bg: #190554;
+$a2-bg: #211F26;
+$a2-box-bg: #16131E;
+$a2-box-bg-active: #fff;
+$rooms-bg: #08011A;
+$room-box-bg: #0A0321;
+$client-box-bg: #ffffff;
+$client-bg: #211F26;
+$newsletter-bg: #190554;
+$footer-bg: #211F26;
+$body-bg: #211F26;
+
+/* ----- buttons colors ----- */
+
+$book-btn-bg: #0095CF;
+$btn-bg: #E8A898;
+$next-btn-bg: #0095CF;
+$room-btn-bg: #0095CF;
+$see-more-btn-border: #fff;
+$arrow-bg: #0095CF;
+
+/* ----- text colors ----- */
+
+$nav-a-clr: #fff;
+$book-text-clr: #fff;
+$h1-clr: #fff;
+$h2-clr: #fff;
+$p-light-clr: #fff;
+$p-a1-clr: #0181B7;
+$p-dark-clr: #16131E;
+$a-hover-bg: #1082B1;
+$nav-a-hover: #E0968A;
+
+/* ----- fonts ----- */
+
+$text: 'Open Sans';
+$header: 'Julius Sans One';
+$header-2: 'Pacifico';
+
+/* ----- text styles ----- */
+
+h1 {
+  font-size: 7.5em;
+  font-family: $header;
+  color: $h1-clr;
+}
+
+h2 {
+  font-size: 3.125em;
+  font-family: $header;
+  color: $h2-clr;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 1.25em;
+  font-family: $text;
+  font-weight: 300;
+  color: $p-light-clr;
+  line-height: 2.2em;
+}
+
+a {
+  font: {
+  size: 1.25em;
+  family: $text;
+  weight: 600;
+  }
+  color: $nav-a-clr;
+  text: {
+    decoration: none;
+    transform: lowercase;
+  }
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  height: 100%;
+  background-color: $body-bg;
+}
+
+/* ----- buttons style ----- */
+
+.btn {
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: $p-light-clr;
+  font-size: 1.25em;
+  font-family: $text;
+  @include transition(0.3s);
+  padding: 5px 10px;
+  overflow: auto;
+
+  &:hover {
+    transform: scale(1.2);
+    border: 1px solid rgba(225, 225, 225, 0.0);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+/* ----- top navigation ----- */
+
+.nav-container {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  z-index: 888;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background-color: $nav-bg;
+  }
+}
+
+.top-nav {
+  @include flex(row, wrap, flex-end);
+  position: absolute;
+  width: 50%;
+  top: 0;
+  right: 0;
+  padding: 12px 2.92%;
+}
+
+.nav-a {
+  margin: 0 3%;
+  color: $nav-a-clr;
+  font: {
+    size: 0.9em;
+    weight: 400;
+  }
+  text-transform: uppercase;
+  @include transition(0.5s);
+
+  &:hover {
+    color: $nav-a-hover;
+    opacity: 0.8;
+  }
+}
+
+.hamburger-menu {
+  position: fixed;
+  top: 50px;
+  @include flex(column, nowrap, flex-start);
+  width: 100%;
+  height: 0;
+  z-index: 666;
+  text-align: center;
+  display: none;
+  overflow: hidden;
+  @include transition(0.5s);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    background-color: $nav-bg;
+  }
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+/* ----- booking box ----- */
+
+.book-now {
+  position: absolute;
+  top: 0;
+  left: 5.5%;
+  width: 21%;
+  height: 50px;
+  background-color: $book-btn-bg;
+  border: none;
+  text-align: center;
+  padding: 15px 5% 40px 5%;
+  font: {
+    family: $header;
+    size: 1.375em;
+  }
+  color: $p-light-clr;
+  z-index: 1;
+  outline: none;
+}
+
+.book-box {
+  @include flex(column, nowrap, center);
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 5.5%;
+  width: 21%;
+  height: 0;
+  background-color: $book-btn-bg;
+  overflow: hidden;
+  @include transition(0.5s);
+
+  label {
+    font: {
+      size: 1.25em;
+      family: $text;
+    }
+    color: $p-light-clr;
+    width: 66.6%;
+    text-align: left;
+    margin: 2px 0;
+  }
+}
+
+.book-input {
+  background-color: transparent;
+  width: 66.6%;
+  height: 40px;
+  margin: 0 0 35px 0;
+  outline: none;
+  border-bottom: 2px solid rgba(225, 225, 225, 1);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font: {
+    size: 0.818em;
+    family: $text;
+  }
+  color: $p-light-clr;
+  @include transition(0.2s);
+
+  &:focus {
+    font-size: 1.25em;
+    outline: none;
+    border-bottom: 2px solid rgba(225, 225, 225, 0);
+  }
+}
+
+.book-btn {
+  margin: 15px 0 0 0;
+  overflow: hidden;
+}
+
+/* ----- main container ----- */
+
+.main-container {
+  @include flex(column, nowrap, flex-start);
+  width: 100%;
+}
+
+.section {
+  width: 100%;
+  position: relative;
+}
+
+/* ----- header / intro ----- */
+
+@keyframes intro1 {
+  from {transform: scale(1.0);}
+  to {transform: scale(1.5);}
+}
+
+.intro {
+  @include flex(column, nowrap, center);
+  align-items: center;
+  position: relative;
+  min-height: 100%;
+  min-height: 100vh;
+  background-color: $a1-bg;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    @include img(url(../img/main-graphic1.png));
+    animation: intro1 20s forwards;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @include gradient;
+    z-index: 1;
+  }
+}
+
+.title-img {
+  width: 25%;
+  z-index: 2;
+  margin: 0;
+
+  img {
+    width: 100%;
+  }
+}
+
+.see-more-btn {
+  background-color: transparent;
+  border: 1px solid $see-more-btn-border;
+  margin: 40px 20px;
+  padding: 15px 20px;
+  z-index: 2;
+  text-align: center;
+  overflow: auto;
+
+  a {
+    margin: auto;
+    color: $p-light-clr;
+    padding: 0;
+
+    &:hover {
+      color: $p-light-clr;
+    }
+  }
+}
+
+/* ----- about 1 section ----- */
+
+.about-1 {
+  @include flex(row, wrap, space-around);
+  background-color: $a1-bg;
+  padding: 50px 0;
+}
+
+.col-a1 {
+  width: 35%;
+  margin: 0 20px;
+}
+
+.col-a1-r {
+  p {
+    color: $p-a1-clr;
+  }
+}
+
+/* ----- about 2 section ----- */
+
+@keyframes svgAnimationA2 {
+  0% {stroke-dashoffset: -3200; fill: none;}
+  75% {stroke-dashoffset: 0; fill: none;}
+  85% {fill: rgba(225, 225, 225, 0.1);}
+  90% {fill: rgba(225, 225, 225, 0.4);}
+  95% {fill: rgba(225, 225, 225, 0.7);}
+  100% {stroke-dashoffset: 0; fill: rgba(225, 225, 225, 1.0); stroke-width: 1;}
+}
+
+.about-2 {
+  @include flex(row, wrap, space-around);
+  align-items: center;
+  background-color: $a2-bg;
+  padding: 50px 0;
+}
+
+.box-a2 {
+  position: relative;
+  overflow: hidden;
+  width: 240px;
+  height: 220px;
+  margin: 5px;
+  background-color: $a2-box-bg;
+  text-align: center;
+  @include transition(0.5s);
+
+  p {
+    margin: 20px auto;
+    width: 70%;
+    font-size: 1em;
+  }
+
+//hover effects
+  &:hover {
+  }
+
+  &:hover .svg-a2 {
+    display: none;
+  }
+
+  &:hover .hidden-a2 {
+    opacity: 1.0;
+  }
+}
+
+.hidden-a2 {
+  opacity: 0;
+  margin: 10px auto;
+  @include transition(0.5s);
+}
+
+// svg
+.svg-a2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 50%;
+  stroke-width: 5;
+  fill: none;
+}
+
+.path-a2 {
+  stroke-dasharray: 3200;
+  animation: svgAnimationA2 3s forwards;
+  animation-play-state: running;
+  @include transition(0.5s)
+}
+
+
+/* ----- rooms section ----- */
+
+.rooms {
+  background-color: $rooms-bg;
+}
+
+.rooms-container {
+  position: relative;
+  @include flex(row, wrap, space-around);
+  margin: 50px auto;
+  background-color: $room-box-bg;
+  width: 80%;
+  min-height: 500px;
+  padding: 10px;
+  @include transition(0.5s);
+
+  &:hover .box-room {
+    opacity: 0.3;
+  }
+
+  &:hover .box-room:hover {
+    opacity: 1.0;
+  }
+
+  &:hover .box-room:hover .room-img img {
+    transform: scale(1.2);
+  }
+
+  &:hover .box-room:hover .room-hidden {
+    opacity: 1;
+  }
+}
+
+.box-room {
+  position: relative;
+  width: 47%;
+  min-width: 250px;
+  min-height: 200px;
+  margin: 10px;
+  @include transition(0.5s)
+}
+
+.room-img {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $room-box-bg;
+    opacity: 0.5;
+    z-index: 666;
+  }
+
+  img {
+    width: 100%;
+    @include transition(0.5s);
+  }
+}
+
+.room-hidden {
+  width: 85%;
+  height: 85%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  border: 1px solid #fff;
+  opacity: 0;
+  z-index: 666;
+  text-align: center;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $room-box-bg;
+    opacity: 0.5;
+    z-index: -1;
+  }
+
+  p {
+    display: block;
+    margin: 20px auto;
+    width: 90%;
+  }
+}
+
+.btn-room {
+  margin: 10px auto;
+}
+
+/* ----- opinions / clients section ----- */
+
+.clients {
+  position: relative;
+  @include img(url(../img/pool.png));
+  height: 500px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $client-bg;
+    opacity: 0.4;
+    z-index: 1;
+  }
+}
+
+.box-client {
+  position: relative;
+  margin: 0 auto;
+  width: 40%;
+  min-height: 100%;
+  text-align: center;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $client-box-bg;
+    opacity: 0.8;
+  }
+}
+
+.opinion-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10px;
+  margin: auto;
+  width: 90%;
+  padding: 2px;
+  z-index: 2;
+}
+
+.op-slide {
+  display: none;
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+
+  p {
+    color: $p-dark-clr;
+  }
+}
+
+#first-slide {
+  display: block;
+}
+
+.arrows {
+  position: absolute;
+  bottom: 20px;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+.arrow {
+  position: relative;
+  width: 10%;
+  z-index: 3;
+  opacity: 0.7;
+  margin: 5px;
+  cursor: pointer;
+
+  &:hover .arrow-bg {
+    fill: transparent;
+  }
+
+  &:hover .arrow-tr {
+    fill: $arrow-bg;
+  }
+}
+
+.arrow-bg {
+  fill: $arrow-bg;
+  @include transition(0.5s);
+}
+
+.arrow-tr {
+  @include transition(0.5s);
+}
+
+/* ----- newsletter section ----- */
+
+.newsletter {
+  @include flex(row, wrap, space-around);
+  background-color: $newsletter-bg;
+}
+
+.col-ns {
+  @include flex(column, nowrap, flex-start);
+  width: 40%;
+  margin: 50px 1%;
+}
+
+.col-ns-r {
+  align-items: center;
+}
+
+.col-ns-l {
+  h2 {
+    margin: 10px 0;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+.input-ns {
+  width: 80%;
+  height: 50px;
+  margin: 15px auto;
+  padding: 2px 10px;
+  border-bottom: 1px solid rgba(225, 225, 225, 1);
+  border-top: 0px solid transparent;
+  border-left: 0px solid transparent;
+  border-right: 0px solid transparent;
+  background-color: transparent;
+  font: {
+    size: 1.125em;
+    family: $text;
+  }
+  color: $p-light-clr;
+  @include transition(0.5s);
+
+  &:focus{
+    outline: none;
+    border-bottom: 2px solid rgba(225, 225, 225, 0);
+    font-size: 1.25em;
+  }
+}
+
+.ns-send-btn {
+  margin-top: 50px;
+}
+
+/* ----- newsletter card ----- */
+
+.ns-card {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  width: 80%;
+  margin: auto;
+  background-color: $newsletter-bg;
+  z-index: 999;
+  text-align: center;
+  display: none;
+
+  h2 {
+    margin-top: 80px;
+  }
+}
+
+.close-ns-card-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font: {
+    size: 1.25em;
+    family: $text;
+  }
+  color: $p-light-clr;
+}
+
+.contact {
+  background-color: $footer-bg;
+  height: 80px;
+}
+
+/* ----- media ----- */
+
+@media screen and (max-width: 1200px) {
+  .book-now {
+    font-size: 1.125em;
+  }
+
+  .book-box {
+    label {
+      font: {
+        size: 1.125em;
+        family: $text;
+      }
+    }
+  }
+
+  .rooms-container {
+    width: 60%;
+  }
+
+  .box-room {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  h2 {
+    font-size: 2.25em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  .book-now {
+    display: none;
+  }
+
+  .book-box {
+    display: none;
+  }
+
+  .top-nav {
+    width: 100%;
+  }
+
+  .normal-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .ham-a {
+    position: relative;
+    width: 100%;
+    padding: 10px 0;
+    margin: 0;
+    z-index: 777;
+    border-top: 1px solid rgba(225, 225, 225, 0.5);
+  }
+}
+
+@media screen and (max-width: 788px) {
+  .title-img {
+    width: 40%;
+    z-index: 2;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+  }
+
+  .room-hidden p {
+      font-size: 1em;
+      line-height: 20px;
+      margin: 15px auto 10px auto;
+  }
+
+  .box-client {
+    width: 70%;
+  }
+
+  .op-slide p {
+      font-size: 1em;
+  }
+
+  .clients {
+    max-height: 400px;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .about-1, .newsletter {
+    @include flex(column, wrap, space-around);
+  }
+
+  .col-a1, .col-ns {
+    text-align: center;
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .col-a1 {
+    margin: 0 auto 10px auto;
+  }
+
+  .col-ns-r {
+    margin-bottom: 40px;
+  }
+
+  .rooms-container {
+    width: 90%;
+    padding: 5px;
+  }
+
+  .box-client {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .title-img {
+    width: 60%;
+    z-index: 2;
+    margin: 0;
+  }
+
+  .btn {
+    font-size: 1em;
+  }
+
+  .top-nav a {
+    font-size: 0.78em;
+  }
+
+  .op-slide p {
+      font-size: 1em;
+      line-height: 1.6em;
+  }
+}
