@@ -1,6 +1,5 @@
-# hotel-landing-page
+<h1>Hotel Landing Page</h1>
 
-# simple hotel one-page template
-<p>design & code created by me</   p>
-
-# icons: Madebyolivier (www.flaticon.com/authors/madebyoliver) & Freepik (www.freepik.com)
+<p>simple hotel one-page template</p>
+<p>design & code created by me</p>
+<p>icons: <a href="www.flaticon.com/authors/madebyoliver" target="_blank">Madebyolivier</a> & <a href="www.freepik.com" target="_blank">Freepik</a>
