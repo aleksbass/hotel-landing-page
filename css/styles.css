@@ -605,7 +605,7 @@ footer {
 footer p, footer a {
   font-size: 14px;
   font-weight: 00;
-  color: #09080A;
+  color: #fff;
   margin: 20px 15px 0 0; }
 
 /* ----- media ----- */
@@ -664,9 +664,9 @@ footer p, footer a {
     font-size: 1.75em; }
 
   .room-hidden p {
-    font-size: 1em;
-    line-height: 20px;
-    margin: 15px auto 10px auto; }
+    font-size: 1.125em;
+    line-height: 25px;
+    margin: 20px auto 15px auto; }
 
   .box-client {
     width: 70%; }
@@ -713,6 +713,18 @@ footer p, footer a {
 
   .op-slide p {
     font-size: 1em;
-    line-height: 1.6em; } }
+    line-height: 1.6em; }
+
+  .box-room {
+    margin: 5px auto 0 auto; }
+
+  .room-hidden {
+    width: 85%;
+    height: 75%; }
+
+  .room-hidden p {
+    font-size: 0.8em;
+    line-height: 20px;
+    margin: 5px auto 5px auto; } }
 
 /*# sourceMappingURL=styles.css.map */
