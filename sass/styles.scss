@@ -75,7 +75,7 @@ $p-a1-clr: #0181B7;
 $p-dark-clr: #16131E;
 $a-hover-bg: #1082B1;
 $nav-a-hover: #E0968A;
-$footer-text-clr: #09080A;
+$footer-text-clr: #fff;
 
 /* ----- fonts ----- */
 
@@ -862,9 +862,9 @@ footer p, footer a {
   }
 
   .room-hidden p {
-      font-size: 1em;
-      line-height: 20px;
-      margin: 15px auto 10px auto;
+      font-size: 1.125em;
+      line-height: 25px;
+      margin: 20px auto 15px auto;
   }
 
   .box-client {
@@ -927,5 +927,20 @@ footer p, footer a {
   .op-slide p {
       font-size: 1em;
       line-height: 1.6em;
+  }
+
+  .box-room {
+    margin: 5px auto 0 auto;
+  }
+
+  .room-hidden {
+    width: 85%;
+    height: 75%;
+  }
+
+  .room-hidden p {
+      font-size: 0.8em;
+      line-height: 20px;
+      margin: 5px auto 5px auto;
   }
 }
